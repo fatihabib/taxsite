@@ -1,0 +1,17 @@
+{% extends 'siteapp/base.html' %} {% load static %} {% block title %}{{ event.title }} | Tax Automation{% endblock %} {% block content %}
+<section class="event-detail">
+    {% if event.image %}
+    <img src="{{ event.image.url }}" alt="{{ event.title }}"> {% endif %}
+
+    <h1>{{ event.title }}</h1>
+
+    <div class="event-meta">
+        <span><i class="fa fa-calendar"></i> {{ event.date|date:"F j, Y" }}</span>
+        <span><i class="fa fa-user"></i> Organized by {{ event.organizer }}</span>
+    </div>
+
+    <p>{{ event.description }}</p>
+
+    <a href="{% url 'index' %}#events" class="back-link">← Back to Events</a>
+</section>
+{% endblock %}

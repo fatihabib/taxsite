@@ -1,0 +1,83 @@
+[{
+        "model": "siteapp.division",
+        "pk": 1,
+        "fields": {
+            "name": "Corporate Services",
+            "description": "Handles administration, HR, and finance."
+        }
+    },
+    {
+        "model": "siteapp.division",
+        "pk": 2,
+        "fields": {
+            "name": "Tax Operations",
+            "description": "Responsible for tax collection and compliance."
+        }
+    },
+    {
+        "model": "siteapp.division",
+        "pk": 3,
+        "fields": {
+            "name": "Technology & Innovation",
+            "description": "Focuses on automation and digital solutions."
+        }
+    },
+    {
+        "model": "siteapp.division",
+        "pk": 4,
+        "fields": {
+            "name": "Customer Service",
+            "description": "Supports taxpayers and resolves inquiries."
+        }
+    },
+
+    { "model": "siteapp.department", "pk": 1, "fields": { "division": 1, "name": "Finance" } },
+    { "model": "siteapp.department", "pk": 2, "fields": { "division": 1, "name": "Human Resources" } },
+    { "model": "siteapp.department", "pk": 3, "fields": { "division": 1, "name": "Procurement" } },
+
+    { "model": "siteapp.department", "pk": 4, "fields": { "division": 2, "name": "Tax Collection" } },
+    { "model": "siteapp.department", "pk": 5, "fields": { "division": 2, "name": "Audit & Compliance" } },
+    { "model": "siteapp.department", "pk": 6, "fields": { "division": 2, "name": "Policy Review" } },
+    { "model": "siteapp.department", "pk": 7, "fields": { "division": 2, "name": "Taxpayer Support" } },
+
+    { "model": "siteapp.department", "pk": 8, "fields": { "division": 3, "name": "IT Infrastructure" } },
+    { "model": "siteapp.department", "pk": 9, "fields": { "division": 3, "name": "Software Development" } },
+    { "model": "siteapp.department", "pk": 10, "fields": { "division": 3, "name": "Data Analytics" } },
+    { "model": "siteapp.department", "pk": 11, "fields": { "division": 3, "name": "Cybersecurity" } },
+
+    { "model": "siteapp.department", "pk": 12, "fields": { "division": 4, "name": "Customer Support" } },
+    { "model": "siteapp.department", "pk": 13, "fields": { "division": 4, "name": "Field Operations" } },
+    { "model": "siteapp.department", "pk": 14, "fields": { "division": 4, "name": "Call Center" } },
+    { "model": "siteapp.department", "pk": 15, "fields": { "division": 4, "name": "Service Quality" } },
+
+    {
+        "model": "siteapp.event",
+        "pk": 1,
+        "fields": {
+            "title": "Customer Service Week Kickoff",
+            "description": "Opening ceremony to celebrate customer service week.",
+            "image": "events/event1.jpg",
+            "date": "2025-10-01"
+        }
+    },
+    {
+        "model": "siteapp.event",
+        "pk": 2,
+        "fields": {
+            "title": "Tax Automation Showcase",
+            "description": "Demonstration of new digital tax tools and services.",
+            "image": "events/event2.jpg",
+            "date": "2025-10-02"
+        }
+    },
+    {
+        "model": "siteapp.event",
+        "pk": 3,
+        "fields": {
+            "title": "Customer Appreciation Day",
+            "description": "Recognizing loyal taxpayers and partners.",
+            "image": "events/event3.jpg",
+            "date": "2025-10-03"
+        }
+    }
+]

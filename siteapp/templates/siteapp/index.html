@@ -1,0 +1,158 @@
+{% extends 'siteapp/base.html' %} {% load static %} {% block title %}Home | Tax Automation{% endblock %} {% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="{% static 'siteapp/videos/vid2.webm' %}" type="video/webm">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Customer Service Week</h1>
+        <p>We're celebrating the people who go above and beyond every day to support our customers with care, dedication, and heart. At <strong>Tax Automation</strong>, we combine technology and expertise to simplify reporting, compliance, and financial
+            processes.
+        </p>
+        <div class="hero-buttons">
+            <a href="#events" class="btn">Explore Event</a>
+            <a href="#learn" class="btn btn-outline">Learn More</a>
+            <a href="#structure" class="btn btn-secondary">Our Structure</a>
+        </div>
+    </div>
+</section>
+
+<!-- Structure Section -->
+<section id="structure" class="structure">
+    <!-- YouTube Video Section -->
+    <!-- YouTube Video Section -->
+    <section class="youtube-video-section">
+        <div class="youtube-container">
+            <iframe src="https://www.youtube.com/embed/W_eUQ1Av6lE?autoplay=1&controls=0&rel=0&modestbranding=1" title="YouTube video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        </div>
+
+        <div class="youtube-container">
+            <iframe src="https://www.youtube.com/embed/7nvL7yszy5A?autoplay=1&controls=0&rel=0&modestbranding=1" title="YouTube video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        </div>
+    </section>
+
+
+
+
+
+
+    <div class="container">
+        <h2 class="structure-title">Our Organization</h2>
+        <p class="structure-subtitle">4 Primary Divisions • 15 Departments</p>
+        <p class="text-center structure-intro">
+            Each division specializes in aspects of tax and compliance automation, ensuring tailored solutions and exceptional service.
+        </p>
+
+        {% for division in divisions %}
+        <section class="division-section">
+            <div class="division-banner" style="background-image: url('{% if division.image %}{{ division.image.url }}{% else %}{% static 'siteapp/images/placeholder.png' %}{% endif %}');">
+                <div class="division-banner-overlay">
+                    <h3 class="division-name">{{ division.name }}</h3>
+                    <p class="division-dept-count">{{ division.departments.count }} Departments</p>
+                </div>
+            </div>
+            {% if division.departments.exists %}
+            <div class="department-container">
+                {% for dept in division.departments.all %}
+                <div class="department-card">
+                    <div class="department-image-wrapper">
+                        <img src="{% if dept.image %}{{ dept.image.url }}{% else %}{% static 'siteapp/images/placeholder.png' %}{% endif %}" alt="{{ dept.name }}">
+                    </div>
+                    <h4 class="department-name">{{ dept.name }}</h4>
+                    <p class="department-desc">{% if dept.description %}{{ dept.description|truncatewords:25 }}{% else %}This department handles key functions in our organization.{% endif %}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </section>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Random Normal Video Section -->
+<section class="normal-video-section">
+    <video autoplay muted loop controls class="normal-video">
+        <source src="{% static 'siteapp/videos/background.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</section>
+
+
+<!-- Why Choose Tax Automation -->
+<section class="why-choose">
+    <div class="container">
+        <h3>Why Choose Tax Automation?</h3>
+        <p>Our platform integrates cutting-edge automation with expert knowledge in tax regulations. By centralizing processes, reducing manual effort, and providing real-time reporting, we help organizations minimize errors, save time, and stay compliant.</p>
+        <p>We believe technology should simplify, not complicate. With Tax Automation, companies gain insights, efficiency, and peace of mind in managing complex financial tasks.</p>
+    </div>
+</section>
+<!-- Video Section -->
+<section id="promo-video" class="video-section">
+    <video autoplay muted loop playsinline class="video-background">
+        <source src="{% static 'siteapp/videos/background.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+    <div class="video-content">
+        <h2>Discover How Tax Automation Works</h2>
+        <p>Learn how our innovative platform simplifies compliance, reporting, and financial processes for organizations like yours.</p>
+        <a href="#learn" class="btn">Learn More</a>
+    </div>
+</section>
+
+<!-- Events Section -->
+<section id="events" class="events-section">
+    <div class="container">
+        <h2 class="events-title">Explore Events</h2>
+        <p class="events-intro">Stay updated with our latest seminars, workshops, and internal events designed to enhance employee skills and client knowledge in tax automation.</p>
+
+        <div class="events-grid">
+            {% for event in events %}
+            <a href="{% url 'event_detail' event.id %}" class="event-card">
+                {% if event.image %}
+                <div class="event-image">
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                </div>
+                {% endif %}
+                <div class="event-content">
+                    <h3>{{ event.title }}</h3>
+                    <p>{{ event.description|truncatewords:25 }}</p>
+                    <span class="btn">Explore Event</span>
+                </div>
+            </a> {% empty %}
+            <p class="no-events">No events available yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Learn More Section -->
+<section id="learn" class="learn-section">
+    <div class="container">
+        <h2 class="learn-title">Learn More About Us</h2>
+        <p class="learn-intro">At <strong>Tax Automation</strong>, we empower organizations to manage their tax reporting and compliance processes efficiently. Our solutions reduce errors, save time, and increase transparency across all financial operations.</p>
+
+        <div class="learn-grid">
+            <div class="learn-card">
+                <div class="learn-icon">🎯</div>
+                <h3>Our Mission</h3>
+                <p>Transforming financial and compliance workflows through intuitive automation, ensuring accuracy, speed, and reliability.</p>
+            </div>
+            <div class="learn-card">
+                <div class="learn-icon">🌟</div>
+                <h3>Our Vision</h3>
+                <p>To be the leading partner for organizations seeking seamless automation of tax, reporting, and regulatory processes while fostering trust and accountability.</p>
+            </div>
+            <div class="learn-card">
+                <div class="learn-icon">💎</div>
+                <h3>Our Values</h3>
+                <p>Integrity, innovation, teamwork, and a customer-first mindset guide our approach to technology, collaboration, and client engagement.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
