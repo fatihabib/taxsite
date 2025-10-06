@@ -20,8 +20,7 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 # ------------------------------
 # Debug & Allowed Hosts
 # ------------------------------
-DEBUG = True
-ALLOWED_HOSTS = []
+
 
 # ------------------------------
 # Installed Apps
