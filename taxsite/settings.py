@@ -4,6 +4,9 @@ import dj_database_url
 from django.core.management.utils import get_random_secret_key
 # ------------------------------
 # Base Directory
+from dotenv import load_dotenv
+load_dotenv()
+
 # ------------------------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
