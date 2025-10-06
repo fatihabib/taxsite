@@ -1,13 +1,395 @@
-{% extends 'siteapp/base.html' %} {% load static %} {% block title %}Home | Tax Automation{% endblock %} {% block content %}
+{% extends 'siteapp/base.html' %} {% load static %} {% block title %}Home | Tax Automation{% endblock %} {% block content %} {% load static %}
+
+
+<section class="hero-animated" style="background-image: url('{% static 'siteapp/images/tax12.jpg' %}');">
+    <!-- Particle background -->
+    <canvas id="hero-particles"></canvas>
+
+    <!-- Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+        <h1 class="hero-title fade-in">Customer Service Week</h1>
+        <p class="hero-subtitle fade-in delay-1">
+            We're celebrating the people who go above and beyond every day to support our customers with care, dedication, and heart. At
+            <strong>Tax Automation</strong>, we combine technology and expertise to simplify reporting, compliance, and financial processes.
+        </p>
+
+        <div class="hero-buttons fade-in delay-2">
+            <a href="#events" class="btn btn-outline">Explore Event</a>
+            <a href="#learn" class="btn btn-outline">Learn More</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Events Section -->
+
+
+
+
+
+<!-- Why Choose Tax Automation -->
+<section class="why-choose-premium">
+    <div class="container">
+        <h3 class="fade-in">Why Choose Tax Automation?</h3>
+        <p class="fade-in delay-1">
+            Our platform integrates cutting-edge automation with expert knowledge in tax regulations. By centralizing processes, reducing manual effort, and providing real-time reporting, we help organizations minimize errors, save time, and stay compliant.
+        </p>
+        <p class="fade-in delay-2">
+            We believe technology should simplify, not complicate. With Tax Automation, companies gain insights, efficiency, and peace of mind in managing complex financial tasks.
+        </p>
+
+        <!-- Feature Highlights with Animated Icons -->
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h4>Speed & Efficiency</h4>
+                <p>Automate repetitive tasks to save time and reduce errors.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h4>Secure Compliance</h4>
+                <p>Ensure all financial data meets regulatory standards safely.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <h4>Real-Time Insights</h4>
+                <p>Track progress and performance with easy-to-read dashboards.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- YouTube Video Section -->
+    <section class="youtube-video-section">
+        <div class="youtube-container">
+            <iframe src="https://www.youtube.com/embed/Q9KwokNg5kc?si=z5cjVMYeYEvgdiL0" title="Why Choose Tax Automation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen>
+        </iframe>
+
+            <!-- Floating Play Button -->
+            <div class="play-button-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="white">
+                <circle cx="12" cy="12" r="12" fill="rgba(183,28,28,0.8)"/>
+                <polygon points="10,8 16,12 10,16" fill="white"/>
+            </svg>
+            </div>
+        </div>
+    </section>
+</section>
+
+
+
+
+
+<section id="events" class="events-section">
+    <div class="container">
+        <h2 class="events-title">Upcoming Tax Automation Events</h2>
+        <p class="events-subtitle">
+            Join our upcoming seminars and workshops designed to enhance your skills in tax automation. Learn from experts, connect with peers, and stay ahead in the industry!
+        </p>
+
+        <div class="events-grid">
+            {% for event in events %}
+            <div class="event-card">
+                {% if event.image %}
+                <div class="event-image">
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                    <div class="event-date">
+                        📅 {{ event.date|date:"M d, Y" }}
+                    </div>
+                </div>
+                {% endif %}
+                <div class="event-content">
+                    <h3>{{ event.title }}</h3>
+                    <p>{{ event.description|truncatewords:35 }}</p>
+
+                    <!-- Event Info with clickable location -->
+                    <div class="event-info">
+                        💼 {{ event.type|capfirst }} | 📍
+                        <a href="https://www.google.com/maps/search/{{ event.location|urlencode }}" target="_blank">
+        {{ event.location }}
+    </a>
+                    </div>
+
+                    <!-- Buttons: Explore + Add to Calendar -->
+                    <div class="event-actions">
+                        <a href="{% url 'event_detail' event.id %}" class="event-btn">Explore Event</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ event.title|urlencode }}&dates={{ event.date|date:'Ymd' }}/{{ event.date|date:'Ymd' }}&details={{ event.description|urlencode }}&location={{ event.location|urlencode }}" target="_blank"
+                            class="add-calendar-btn">📆 Add to Calendar</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-events">No upcoming events at the moment. Check back soon!</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<section class="fun-tax-section">
+    <div class="fun-tax-container">
+        <div class="fun-tax-desc">
+            <div class="fun-tax-icons">
+                <span class="icon">🚀</span>
+                <span class="icon">💡</span>
+                <span class="icon">💰</span>
+            </div>
+
+            <h2 class="fun-tax-title">Empowering Smarter Tax Automation</h2>
+
+            <p class="video-description">
+                <strong>Tax Automation</strong> transforms how organizations handle reporting, compliance, and finance.
+                <br><br> Say goodbye to endless spreadsheets and manual errors — and hello to
+                <strong>speed, accuracy, and peace of mind!</strong>
+            </p>
+
+            <ul class="fun-tax-benefits">
+                <li><i class="fas fa-clock"></i> Save valuable time with automated calculations</li>
+                <li><i class="fas fa-chart-line"></i> Gain real-time financial insights and analytics</li>
+                <li><i class="fas fa-shield-alt"></i> Stay compliant with up-to-date tax regulations</li>
+                <li><i class="fas fa-smile-beam"></i> Simplify processes and boost your team's productivity</li>
+            </ul>
+
+            <a href="#learn" class="fun-tax-btn">Learn More</a>
+        </div>
+    </div>
+</section>
+
+
+<!-- Premium Video Hero Section with Floating Particles -->
+<section id="promo-video" class="video-hero">
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="video-hero-bg">
+        <source src="{% static 'siteapp/videos/background.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Dark Overlay -->
+    <div class="video-hero-overlay"></div>
+
+    <!-- Floating Decorative Icons -->
+    <div class="floating-icons">
+        <span class="icon" style="--i:1;">🚀</span>
+        <span class="icon" style="--i:2;">💡</span>
+        <span class="icon" style="--i:3;">💰</span>
+        <span class="icon" style="--i:4;">📊</span>
+    </div>
+
+    <!-- Floating Particles -->
+    <div class="floating-particles"></div>
+
+    <!-- Content -->
+    <div class="video-hero-content">
+        <h2 class="glow-pulse">Experience the Future of Tax Automation</h2>
+        <p class="glow-pulse">
+            Join us for an exclusive event showcasing how Tax Automation transforms financial workflows. Explore live demos, innovative tools, and strategies that save time, reduce errors, and boost efficiency.
+        </p>
+
+        <ul class="video-key-points">
+            <li>Automate reporting & compliance effortlessly</li>
+            <li>Learn actionable strategies from experts</li>
+            <li>Gain real-time analytics & insights</li>
+            <li>Network with finance leaders & peers</li>
+        </ul>
+
+        <a href="#learn" class="btn-primary">Register Now</a>
+    </div>
+</section>
+
+
+<!-- Learn More Section -->
+<section id="learn" class="learn-section">
+    <!-- Particle background -->
+    <canvas id="learn-particles"></canvas>
+
+    <div class="container">
+        <h2 class="learn-title fade-in">Learn More About Us</h2>
+        <p class="learn-intro fade-in delay-1">
+            At <strong>Tax Automation</strong>, we empower organizations to manage their tax reporting and compliance processes efficiently. Our solutions reduce errors, save time, and increase transparency across all financial operations.
+        </p>
+
+        <div class="learn-grid">
+            <div class="learn-card fade-in delay-2">
+                <div class="learn-icon">🎯</div>
+                <h3>Our Mission</h3>
+                <p class="learn-intro fade-in delay-1">Transforming financial and compliance workflows through intuitive automation, ensuring accuracy, speed, and reliability.</p>
+            </div>
+            <div class="learn-card fade-in delay-3">
+                <div class="learn-icon">🌟</div>
+                <h3>Our Vision</h3>
+                <p class="learn-intro fade-in delay-1">To be the leading partner for organizations seeking seamless automation of tax, reporting, and regulatory processes while fostering trust and accountability.</p>
+            </div>
+            <div class="learn-card fade-in delay-4">
+                <div class="learn-icon">💎</div>
+                <h3>Our Values</h3>
+                <p class="learn-intro fade-in delay-1">Integrity, innovation, teamwork, and a customer-first mindset guide our approach to technology, collaboration, and client engagement.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const eventCards = document.querySelectorAll('.event-card');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+
+            eventCards.forEach(card => {
+                if (filter === 'all' || card.getAttribute('data-type') === filter) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    const canvas = document.getElementById('hero-particles');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Particle setup
+    const particles = [];
+    for (let i = 0; i < 80; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 3 + 1,
+            dx: (Math.random() - 0.5) / 2,
+            dy: (Math.random() - 0.5) / 2
+        });
+    }
+
+    // Particle animation
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255,255,255,0.6)';
+            ctx.fill();
+
+            p.x += p.dx;
+            p.y += p.dy;
+
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Scroll effect
+    const heroContent = document.querySelector('.hero-content');
+    const heroTitle = document.querySelector('.hero-title');
+    const heroSubtitle = document.querySelector('.hero-subtitle');
+    const heroButtons = document.querySelector('.hero-buttons');
+
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+
+        // Move particles faster on scroll
+        particles.forEach(p => {
+            p.x += (scrollY / 1000) * p.dx;
+            p.y += (scrollY / 1000) * p.dy;
+        });
+
+        // Parallax text effect
+        heroTitle.style.transform = `translateY(${scrollY * 0.3}px)`;
+        heroSubtitle.style.transform = `translateY(${scrollY * 0.2}px)`;
+        heroButtons.style.transform = `translateY(${scrollY * 0.15}px)`;
+    });
+
+    // Resize
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
+
+<script>
+    const canvas = document.getElementById('learn-particles');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = document.querySelector('.learn-section').offsetHeight;
+    }
+
+    resizeCanvas();
+
+    const particles = [];
+    for (let i = 0; i < 60; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            r: Math.random() * 2 + 1,
+            dx: (Math.random() - 0.5) / 2,
+            dy: (Math.random() - 0.5) / 2
+        });
+    }
+
+    // Animate particles
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.fill();
+            p.x += p.dx;
+            p.y += p.dy;
+
+            if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+        });
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Scroll interactivity: particles move faster
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        particles.forEach(p => {
+            p.x += (scrollY / 2000) * p.dx;
+            p.y += (scrollY / 2000) * p.dy;
+        });
+    });
+
+    // Resize
+    window.addEventListener('resize', resizeCanvas);
+</script>
+
+
+
+
+
+{% endblock %}
 <!-- Hero Section -->
-<section class="hero">
+<!-- <section class="hero">
     <video autoplay muted loop playsinline class="hero-video">
-        <source src="{% static 'siteapp/videos/vid2.webm' %}" type="video/webm">
+        <source src="{% static 'siteapp/images/vid2.webm' %}" type="video/webm">
         Your browser does not support the video tag.
     </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-        <h1>Customer Service Week</h1>
+        <h1 class="fade-in">Customer Service Week</h1>
         <p>We're celebrating the people who go above and beyond every day to support our customers with care, dedication, and heart. At <strong>Tax Automation</strong>, we combine technology and expertise to simplify reporting, compliance, and financial
             processes.
         </p>
@@ -17,142 +399,4 @@
             <a href="#structure" class="btn btn-secondary">Our Structure</a>
         </div>
     </div>
-</section>
-
-<!-- Structure Section -->
-<section id="structure" class="structure">
-    <!-- YouTube Video Section -->
-    <!-- YouTube Video Section -->
-    <section class="youtube-video-section">
-        <div class="youtube-container">
-            <iframe src="https://www.youtube.com/embed/W_eUQ1Av6lE?autoplay=1&controls=0&rel=0&modestbranding=1" title="YouTube video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-        </div>
-
-        <div class="youtube-container">
-            <iframe src="https://www.youtube.com/embed/7nvL7yszy5A?autoplay=1&controls=0&rel=0&modestbranding=1" title="YouTube video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>
-        </div>
-    </section>
-
-
-
-
-
-
-    <div class="container">
-        <h2 class="structure-title">Our Organization</h2>
-        <p class="structure-subtitle">4 Primary Divisions • 15 Departments</p>
-        <p class="text-center structure-intro">
-            Each division specializes in aspects of tax and compliance automation, ensuring tailored solutions and exceptional service.
-        </p>
-
-        {% for division in divisions %}
-        <section class="division-section">
-            <div class="division-banner" style="background-image: url('{% if division.image %}{{ division.image.url }}{% else %}{% static 'siteapp/images/placeholder.png' %}{% endif %}');">
-                <div class="division-banner-overlay">
-                    <h3 class="division-name">{{ division.name }}</h3>
-                    <p class="division-dept-count">{{ division.departments.count }} Departments</p>
-                </div>
-            </div>
-            {% if division.departments.exists %}
-            <div class="department-container">
-                {% for dept in division.departments.all %}
-                <div class="department-card">
-                    <div class="department-image-wrapper">
-                        <img src="{% if dept.image %}{{ dept.image.url }}{% else %}{% static 'siteapp/images/placeholder.png' %}{% endif %}" alt="{{ dept.name }}">
-                    </div>
-                    <h4 class="department-name">{{ dept.name }}</h4>
-                    <p class="department-desc">{% if dept.description %}{{ dept.description|truncatewords:25 }}{% else %}This department handles key functions in our organization.{% endif %}</p>
-                </div>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </section>
-        {% endfor %}
-    </div>
-</section>
-
-<!-- Random Normal Video Section -->
-<section class="normal-video-section">
-    <video autoplay muted loop controls class="normal-video">
-        <source src="{% static 'siteapp/videos/background.mp4' %}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</section>
-
-
-<!-- Why Choose Tax Automation -->
-<section class="why-choose">
-    <div class="container">
-        <h3>Why Choose Tax Automation?</h3>
-        <p>Our platform integrates cutting-edge automation with expert knowledge in tax regulations. By centralizing processes, reducing manual effort, and providing real-time reporting, we help organizations minimize errors, save time, and stay compliant.</p>
-        <p>We believe technology should simplify, not complicate. With Tax Automation, companies gain insights, efficiency, and peace of mind in managing complex financial tasks.</p>
-    </div>
-</section>
-<!-- Video Section -->
-<section id="promo-video" class="video-section">
-    <video autoplay muted loop playsinline class="video-background">
-        <source src="{% static 'siteapp/videos/background.mp4' %}" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <div class="video-overlay"></div>
-    <div class="video-content">
-        <h2>Discover How Tax Automation Works</h2>
-        <p>Learn how our innovative platform simplifies compliance, reporting, and financial processes for organizations like yours.</p>
-        <a href="#learn" class="btn">Learn More</a>
-    </div>
-</section>
-
-<!-- Events Section -->
-<section id="events" class="events-section">
-    <div class="container">
-        <h2 class="events-title">Explore Events</h2>
-        <p class="events-intro">Stay updated with our latest seminars, workshops, and internal events designed to enhance employee skills and client knowledge in tax automation.</p>
-
-        <div class="events-grid">
-            {% for event in events %}
-            <a href="{% url 'event_detail' event.id %}" class="event-card">
-                {% if event.image %}
-                <div class="event-image">
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
-                </div>
-                {% endif %}
-                <div class="event-content">
-                    <h3>{{ event.title }}</h3>
-                    <p>{{ event.description|truncatewords:25 }}</p>
-                    <span class="btn">Explore Event</span>
-                </div>
-            </a> {% empty %}
-            <p class="no-events">No events available yet.</p>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- Learn More Section -->
-<section id="learn" class="learn-section">
-    <div class="container">
-        <h2 class="learn-title">Learn More About Us</h2>
-        <p class="learn-intro">At <strong>Tax Automation</strong>, we empower organizations to manage their tax reporting and compliance processes efficiently. Our solutions reduce errors, save time, and increase transparency across all financial operations.</p>
-
-        <div class="learn-grid">
-            <div class="learn-card">
-                <div class="learn-icon">🎯</div>
-                <h3>Our Mission</h3>
-                <p>Transforming financial and compliance workflows through intuitive automation, ensuring accuracy, speed, and reliability.</p>
-            </div>
-            <div class="learn-card">
-                <div class="learn-icon">🌟</div>
-                <h3>Our Vision</h3>
-                <p>To be the leading partner for organizations seeking seamless automation of tax, reporting, and regulatory processes while fostering trust and accountability.</p>
-            </div>
-            <div class="learn-card">
-                <div class="learn-icon">💎</div>
-                <h3>Our Values</h3>
-                <p>Integrity, innovation, teamwork, and a customer-first mindset guide our approach to technology, collaboration, and client engagement.</p>
-            </div>
-        </div>
-    </div>
-</section>
-{% endblock %}
+</section> -->

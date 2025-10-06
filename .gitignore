@@ -1,0 +1,15 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+
+# Ignore your local SQLite database
+db.sqlite3
+
+# Ignore uploaded media (you’ll store these online later)
+/media/
+
+# Ignore collected static files (Render will collect them)
+/staticfiles/
+
+# Ignore your local environment variables
+.env

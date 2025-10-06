@@ -1,0 +1,84 @@
+{% extends 'siteapp/base.html' %} {% load static %} {% block title %}{{ event.title }} | Tax Automation{% endblock %} {% block content %}
+<!-- Structure Section -->
+<section id="structure" class="structure">
+    <!-- YouTube Video Section -->
+    <!-- YouTube Video Section -->
+    <section class="youtube-video-section">
+        <div class="youtube-container">
+            <iframe src="https://www.youtube.com/embed/W_eUQ1Av6lE?autoplay=1&controls=0&rel=0&modestbranding=1" title="YouTube video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        </div>
+
+        <!-- <div class="youtube-container">
+            <iframe src="https://www.youtube.com/embed/7nvL7yszy5A?autoplay=1&controls=0&rel=0&modestbranding=1" title="YouTube video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+        </div> -->
+    </section>
+    <section id="structure" class="structure">
+        <h2 class="structure-title">Our Structure</h2>
+        <p class="structure-subtitle">Explore our divisions and departments</p>
+
+        {% for division in divisions %}
+        <div class="division-section">
+            <div class="division-banner" style="background-image: url('{{ division.image.url }}')">
+                <div class="division-banner-overlay">
+                    <h3 class="division-name">{{ division.name }}</h3>
+                    <p class="division-dept-count">{{ division.departments.count }} Departments</p>
+                </div>
+            </div>
+
+            <div class="department-container">
+                {% for dept in division.departments.all %}
+                <div class="department-card">
+                    {% if dept.image %}
+                    <div class="department-image-wrapper">
+                        <img src="{{ dept.image.url }}" alt="{{ dept.name }}">
+                    </div>
+                    {% endif %}
+                    <h4 class="department-name">{{ dept.name }}</h4>
+                    <p class="department-desc">{{ dept.description|truncatewords:20 }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
+
+
+
+    <!-- 
+
+    <div class="container">
+        <h2 class="structure-title">Our Organization</h2>
+        <p class="structure-subtitle">4 Primary Divisions • 15 Departments</p>
+        <p class="text-center structure-intro">
+            Each division specializes in aspects of tax and compliance automation, ensuring tailored solutions and exceptional service.
+        </p>
+
+        {% for division in divisions %}
+        <section class="division-section">
+            <div class="division-banner" style="background-image: url('{% if division.image %}{{ division.image.url }}{% else %}{% static 'siteapp/images/placeholder.png' %}{% endif %}');">
+                <div class="division-banner-overlay">
+                    <h3 class="division-name">{{ division.name }}</h3>
+                    <p class="division-dept-count">{{ division.departments.count }} Departments</p>
+                </div>
+            </div>
+            {% if division.departments.exists %}
+            <div class="department-container">
+                {% for dept in division.departments.all %}
+                <div class="department-card">
+                    <div class="department-image-wrapper">
+                        <img src="{% if dept.image %}{{ dept.image.url }}{% else %}{% static 'siteapp/images/placeholder.png' %}{% endif %}" alt="{{ dept.name }}">
+                    </div>
+                    <h4 class="department-name">{{ dept.name }}</h4>
+                    <p class="department-desc">{% if dept.description %}{{ dept.description|truncatewords:25 }}{% else %}This department handles key functions in our organization.{% endif %}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </section>
+        {% endfor %}
+    </div> -->
+</section>
+{% endblock %}

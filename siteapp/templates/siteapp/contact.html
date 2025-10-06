@@ -1,0 +1,74 @@
+{% extends "siteapp/base.html" %} {% load static %} {% block content %}
+
+<section class="min-h-screen flex items-center justify-center bg-gray-100 py-12 px-4">
+    <div class="contact-section">
+        <h2>Contact Us</h2>
+        <p class="subtitle">We'd love to hear from you. Fill out the form below!</p>
+
+        <form id="contactForm" method="post">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+
+            <button type="submit" class="send-btn">Send Message</button>
+        </form>
+
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</section>
+
+<div id="successPopup" class="popup">
+    <div class="popup-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h3>✅ Email Sent!</h3>
+        <p>Your message has been sent successfully. We’ll get back to you soon.</p>
+    </div>
+</div>
+<div class="info-section">
+    <h2>Our Location</h2>
+    <p>123 Red Street, City, Country</p>
+    <p>Phone: +234 123 4567</p>
+    <p>Email: info@example.com</p>
+    <div id="map" style="width:100%;height:300px;background:#eee;">Map placeholder</div>
+</div>
+<script>
+    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        let form = e.target;
+        let formData = new FormData(form);
+
+        let response = await fetch("{% url 'contact' %}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        });
+
+        let data = await response.json();
+
+        if (data.status === "success") {
+            form.reset();
+            openPopup();
+        }
+    });
+
+    function openPopup() {
+        const popup = document.getElementById("successPopup");
+        popup.style.display = "flex";
+        setTimeout(() => closePopup(), 4000);
+    }
+
+    function closePopup() {
+        document.getElementById("successPopup").style.display = "none";
+    }
+</script>
+
+{% endblock %}
