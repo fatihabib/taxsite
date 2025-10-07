@@ -35,6 +35,7 @@
                 {% if event.image %}
                 <div class="event-image">
                     <img src="{{ event.image.url }}" alt="{{ event.title }}" loading="lazy">
+
                     <div class="event-date">
                         📅 {{ event.date|date:"M d, Y" }}
                     </div>
