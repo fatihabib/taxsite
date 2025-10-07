@@ -690,201 +690,191 @@ Hero Section
 
 .events-section {
     background: #f7f5f5;
-    color: #333;
-    padding: 80px 20px;
+    padding: 120px 40px;
+    /* more spacing */
     font-family: 'DM Sans', sans-serif;
     text-align: center;
 }
 
 .events-title {
-    font-size: 2.8rem;
+    font-size: 3.2rem;
     color: #b71c1c;
-    margin-bottom: 10px;
+    font-weight: 900;
+    margin-bottom: 20px;
 }
 
 .events-subtitle {
-    font-size: 1.1rem;
-    max-width: 700px;
-    margin: 0 auto 50px auto;
+    font-size: 1.25rem;
     color: #555;
-    line-height: 1.6;
+    margin-bottom: 70px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
 }
 
 
-/* -----------------------
-   Events Grid
------------------------ */
+/* Grid */
 
 .events-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    /* wider cards */
+    gap: 50px;
+    max-width: 1500px;
+    margin: 0 auto;
 }
 
 
-/* -----------------------
-   Event Card
------------------------ */
+/* Event Card */
 
 .event-card {
     background: #b71c1c;
     color: #fff;
-    border-radius: 16px;
+    /* all text white */
+    border-radius: 25px;
     overflow: hidden;
-    width: 360px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+    transition: transform 0.45s ease, box-shadow 0.45s ease;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
 }
 
 .event-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
 }
+
+
+/* Event Image */
 
 .event-image {
     position: relative;
+    height: 260px;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .event-image img {
     width: 100%;
-    height: 200px;
+    height: 100%;
     object-fit: cover;
-    filter: brightness(0.7);
-    transition: transform 0.4s ease, filter 0.3s ease;
+    filter: brightness(0.9);
+    transition: transform 0.5s ease, filter 0.4s ease;
 }
 
 .event-card:hover .event-image img {
-    transform: scale(1.05);
-    filter: brightness(0.6);
+    transform: scale(1.1);
+    filter: brightness(0.5);
 }
-
-
-/* Event date */
 
 .event-date {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    bottom: 14px;
+    left: 14px;
     background: #fff;
     color: #b71c1c;
-    padding: 5px 10px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    font-weight: 600;
+    padding: 7px 16px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 0.9rem;
 }
 
+
+/* Event Content */
+
 .event-content {
-    padding: 20px;
+    padding: 30px 26px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .event-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.7rem;
+    margin-bottom: 12px;
     color: #fff;
+    /* white on red */
 }
 
 .event-content p {
-    font-size: 0.95rem;
-    color: #fce8e8;
-    margin-bottom: 12px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #fff;
+    /* white on red */
 }
 
 .event-info {
-    font-size: 0.9rem;
-    color: #fbeaea;
-    margin-bottom: 15px;
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    color: #fff;
+    /* white on red */
 }
 
 
-/* -----------------------
-   Button Group
------------------------ */
+/* Buttons */
+
+.event-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+
+/* Buttons */
 
 .event-actions {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
-    margin-top: 10px;
+}
+
+.event-btn,
+.add-calendar-btn {
+    flex: none;
+    /* remove stretching */
+    padding: 8px 18px;
+    /* smaller, more proportional */
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    /* subtle depth */
 }
 
 .event-btn {
-    display: inline-block;
     background: #fff;
     color: #b71c1c;
-    padding: 10px 18px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .event-btn:hover {
     background: #fce8e8;
-    transform: scale(1.05);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-
-/* Add to Calendar Button */
-
 .add-calendar-btn {
-    display: inline-block;
-    background: #efecec;
-    /* Matches the red event card */
-    color: #b71c1c;
-    /* White text for contrast */
-    padding: 10px 20px;
-    /* Slightly larger padding for better click area */
-    border-radius: 30px;
-    /* Rounded pill shape */
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-align: center;
-    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    /* Subtle shadow for depth */
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .add-calendar-btn:hover {
-    background: #910404;
-    /* Darker red on hover */
-    transform: scale(1.05);
-    /* Slight zoom effect */
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px) scale(1.03);
 }
 
 
-/* Responsive: full width on small screens */
-
-@media (max-width: 480px) {
-    .add-calendar-btn {
-        width: 100%;
-        display: block;
-        text-align: center;
-    }
-}
-
-.no-events {
-    font-size: 1.2rem;
-    color: #b71c1c;
-    margin-top: 20px;
-}
-
-
-/* -----------------------
-   Responsive
------------------------ */
+/* Responsive */
 
 @media (max-width: 768px) {
     .events-grid {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-    }
-    .event-card {
-        width: 90%;
+        grid-template-columns: 1fr;
     }
     .event-actions {
         justify-content: center;
@@ -894,11 +884,10 @@ Hero Section
 @media (max-width: 480px) {
     .event-actions {
         flex-direction: column;
-        align-items: center;
+        gap: 14px;
     }
     .event-actions a {
         width: 100%;
-        text-align: center;
     }
 }
 
