@@ -25,65 +25,6 @@
 
 
 <!-- Events Section -->
-
-
-
-
-
-<!-- Why Choose Tax Automation -->
-<section class="why-choose-premium">
-    <div class="container">
-        <h3 class="fade-in">Why Choose Tax Automation?</h3>
-        <p class="fade-in delay-2">
-            Our platform integrates cutting-edge automation with expert knowledge in tax regulations. By centralizing processes, reducing manual effort, and providing real-time reporting, we help organizations minimize errors, save time, and stay compliant.
-        </p>
-        <p class="fade-in delay-2">
-            We believe technology should simplify, not complicate. With Tax Automation, companies gain insights, efficiency, and peace of mind in managing complex financial tasks.
-        </p>
-
-        <!-- Feature Highlights with Animated Icons -->
-        <div class="features-grid">
-            <div class="feature">
-                <div class="feature-icon">⚡</div>
-                <h4>Speed & Efficiency</h4>
-                <p>Automate repetitive tasks to save time and reduce errors.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">🔒</div>
-                <h4>Secure Compliance</h4>
-                <p>Ensure all financial data meets regulatory standards safely.</p>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <h4>Real-Time Insights</h4>
-                <p>Track progress and performance with easy-to-read dashboards.</p>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- YouTube Video Section -->
-    <section class="youtube-video-section">
-        <div class="youtube-container">
-            <iframe src="https://www.youtube.com/embed/Q9KwokNg5kc?si=z5cjVMYeYEvgdiL0" title="Why Choose Tax Automation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen>
-        </iframe>
-
-            <!-- Floating Play Button -->
-            <div class="play-button-overlay">
-                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="white">
-                <circle cx="12" cy="12" r="12" fill="rgba(183,28,28,0.8)"/>
-                <polygon points="10,8 16,12 10,16" fill="white"/>
-            </svg>
-            </div>
-        </div>
-    </section>
-</section>
-
-
-
-
-
 <section id="events" class="events-section">
     <div class="container">
         <h2 class="events-title">Upcoming Tax Automation Events</h2>
@@ -94,31 +35,31 @@
         <div class="events-grid">
             {% for event in events %}
             <div class="event-card">
-                {% if event.image %}
                 <div class="event-image">
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                    {% if event.image %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" loading="lazy"> {% else %}
+                    <img src="{% static 'images/event-placeholder.jpg' %}" alt="Event Image" loading="lazy"> {% endif %}
                     <div class="event-date">
                         📅 {{ event.date|date:"M d, Y" }}
                     </div>
                 </div>
-                {% endif %}
                 <div class="event-content">
                     <h3>{{ event.title }}</h3>
                     <p>{{ event.description|truncatewords:35 }}</p>
 
-                    <!-- Event Info with clickable location -->
                     <div class="event-info">
                         💼 {{ event.type|capfirst }} | 📍
                         <a href="https://www.google.com/maps/search/{{ event.location|urlencode }}" target="_blank">
-        {{ event.location }}
-    </a>
+                            {{ event.location }}
+                        </a>
                     </div>
 
-                    <!-- Buttons: Explore + Add to Calendar -->
                     <div class="event-actions">
                         <a href="{% url 'event_detail' event.id %}" class="event-btn">Explore Event</a>
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ event.title|urlencode }}&dates={{ event.date|date:'Ymd' }}/{{ event.date|date:'Ymd' }}&details={{ event.description|urlencode }}&location={{ event.location|urlencode }}" target="_blank"
-                            class="add-calendar-btn">📆 Add to Calendar</a>
+                            class="add-calendar-btn">
+                            📆 Add to Calendar
+                        </a>
                     </div>
                 </div>
             </div>
