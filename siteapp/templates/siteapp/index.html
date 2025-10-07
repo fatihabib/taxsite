@@ -22,44 +22,38 @@
         </div>
     </div>
 </section>
-
-
-<!-- Events Section -->
 <section id="events" class="events-section">
     <div class="container">
         <h2 class="events-title">Upcoming Tax Automation Events</h2>
         <p class="events-subtitle">
-            Join our upcoming seminars and workshops designed to enhance your skills in tax automation. Learn from experts, connect with peers, and stay ahead in the industry!
+            Join our seminars and workshops to enhance your tax automation skills. Learn from experts, connect with peers, and stay ahead!
         </p>
 
         <div class="events-grid">
             {% for event in events %}
             <div class="event-card">
+                {% if event.image %}
                 <div class="event-image">
-                    {% if event.image %}
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}" loading="lazy"> {% else %}
-                    <img src="{% static 'images/event-placeholder.jpg' %}" alt="Event Image" loading="lazy"> {% endif %}
+                    <img src="{{ event.image.url }}" alt="{{ event.title }}" loading="lazy">
                     <div class="event-date">
                         📅 {{ event.date|date:"M d, Y" }}
                     </div>
                 </div>
+                {% endif %}
                 <div class="event-content">
                     <h3>{{ event.title }}</h3>
                     <p>{{ event.description|truncatewords:35 }}</p>
 
-                    <div class="event-info">
-                        💼 {{ event.type|capfirst }} | 📍
-                        <a href="https://www.google.com/maps/search/{{ event.location|urlencode }}" target="_blank">
-                            {{ event.location }}
-                        </a>
-                    </div>
+                    <!-- Location included and all words white -->
+                    {% if event.type %} 💼 {{ event.type|capfirst }} | {% endif %} 📍 <a href="https://www.google.com/maps/search/{{ event.location|urlencode }}" target="_blank">
+    {{ event.location }}
+</a>
+
 
                     <div class="event-actions">
                         <a href="{% url 'event_detail' event.id %}" class="event-btn">Explore Event</a>
                         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ event.title|urlencode }}&dates={{ event.date|date:'Ymd' }}/{{ event.date|date:'Ymd' }}&details={{ event.description|urlencode }}&location={{ event.location|urlencode }}" target="_blank"
-                            class="add-calendar-btn">
-                            📆 Add to Calendar
-                        </a>
+                            class="add-calendar-btn">📆 Add to Calendar</a>
                     </div>
                 </div>
             </div>
