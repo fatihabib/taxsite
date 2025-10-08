@@ -1,1 +1,1 @@
-web: gunicorn taxsite.wsgi:application --bind 0.0.0.0:$PORT --workers 2 --log-file -
+web: gunicorn your_project_name.wsgi --log-file -

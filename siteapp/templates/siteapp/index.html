@@ -10,7 +10,9 @@
 
     <!-- Hero Content -->
     <div class="hero-content">
-        <h1 class="hero-title fade-in">Customer Service Week</h1>
+        <h3 class="hero-title fade-in">Tax Automation Department</h3>
+        <h4 class="hero-title fade-in">Customer Service Week</h4>
+
         <p class="hero-subtitle fade-in delay-1">
             We're celebrating the people who go above and beyond every day to support our customers with care, dedication, and heart. At
             <strong>Tax Automation</strong>, we combine technology and expertise to simplify reporting, compliance, and financial processes.
@@ -22,13 +24,68 @@
         </div>
     </div>
 </section>
+
+
+<section class="customer-service-card">
+    <div class="card-content">
+        <img src="{% static 'siteapp/images/taxwomen.jpg' %}" alt="Customer Service Team" class="card-image" />
+        <h2 class="card-title">🎉 Happy Customer Service Week!</h2>
+        <p class="card-text">
+            We're celebrating the people who go above and beyond every day to support our customers with care, dedication, and heart.
+        </p>
+        <button class="celebrate-btn">Celebrate with Us 💖</button>
+    </div>
+</section>
+
+
+
+
+<section class="tax-why-section">
+    <div class="tax-why-container">
+        <div class="tax-why-content">
+            <h3 class="tax-why-heading">
+                Why Choose <span class="tax-why-highlight">Tax Automation</span>
+            </h3>
+            <p class="tax-why-description">
+                Simplify your tax processes, save time, and reduce errors with our intelligent automation tools designed for modern finance teams.
+            </p>
+
+            <div class="tax-why-features">
+                <div class="tax-feature">
+                    <div class="tax-feature-icon">🚀</div>
+                    <p class="tax-feature-text">Automated Reporting — no more manual entry or repetitive tasks.</p>
+                </div>
+                <div class="tax-feature">
+                    <div class="tax-feature-icon">💡</div>
+                    <p class="tax-feature-text">Smart Insights — visualize performance with powerful analytics.</p>
+                </div>
+                <div class="tax-feature">
+                    <div class="tax-feature-icon">🔒</div>
+                    <p class="tax-feature-text">Secure Platform — your data is encrypted and compliant.</p>
+                </div>
+                <div class="tax-feature">
+                    <div class="tax-feature-icon">⚡</div>
+                    <p class="tax-feature-text">Fast Processing — handle complex reports in seconds.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Below -->
+    <div class="tax-why-video">
+        <div class="tax-youtube-wrapper">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/W_eUQ1Av6lE?si=aGLnIF1yqw67yUxp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> </div>
+    </div>
+</section>
+
+
 <section id="events" class="events-section">
     <div class="container">
-        <h2 class="events-title">Upcoming Tax Automation Events</h2>
+        <h2 class="events-title">Explore Various Events</h2>
         <p class="events-subtitle">
-            Join our seminars and workshops to enhance your tax automation skills. Learn from experts, connect with peers, and stay ahead!
+            Discover exciting Tax Automation activities — workshops, fun sessions, and innovation days.
         </p>
-
         <div class="events-grid">
             {% for event in events %}
             <div class="event-card">
@@ -314,6 +371,25 @@
 
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const features = document.querySelectorAll('.why-choose .feature');
+        const video = document.querySelector('.why-choose .why-video');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.3
+        });
+
+        features.forEach(f => observer.observe(f));
+        observer.observe(video);
+    });
+</script>
 
 
 {% endblock %}
