@@ -45,3 +45,11 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.email}"
+
+
+from django.shortcuts import render
+from .models import Event
+
+def events_page(request):
+    events = Event.objects.all().order_by('-date')  # latest events first
+    return render(request, 'events.html', {'events': events})

@@ -13,8 +13,8 @@ SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
 
 # ------------------------------
 # Debug & Allowed Hosts
-DEBUG = os.getenv("DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "fatihabib.pythonanywhere.com,localhost,127.0.0.1").split(",")
+DEBUG = False  # Turn off debug in production
+ALLOWED_HOSTS = ['fatihabib.pythonanywhere.com', 'www.fatihabib.pythonanywhere.com']
 
 # ------------------------------
 # Installed Apps
@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'siteapp',  # your main app
+    'siteapp',  # your Django app
 ]
 
 # ------------------------------
@@ -68,18 +68,12 @@ WSGI_APPLICATION = 'taxsite.wsgi.application'
 
 # ------------------------------
 # Database
-if os.getenv("DATABASE_URL"):
-    DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Use SQLite for simplicity
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    # Fallback to SQLite for PythonAnywhere free plan
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+}
 
 # ------------------------------
 # Password Validation
@@ -98,14 +92,16 @@ USE_I18N = True
 USE_TZ = True
 
 # ------------------------------
-# Static Files
+# Static Files (CSS, JS, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']  # folder for your custom static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'    # where collectstatic will copy files
+
+# Make sure PythonAnywhere serves static files from here
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # ------------------------------
-# Media Files
+# Media Files (uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 

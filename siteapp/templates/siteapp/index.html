@@ -80,45 +80,42 @@
 </section>
 
 
-<section id="events" class="events-section">
-    <div class="container">
-        <h2 class="events-title">Explore Various Events</h2>
-        <p class="events-subtitle">
-            Discover exciting Tax Automation activities — workshops, fun sessions, and innovation days.
-        </p>
-        <div class="events-grid">
-            {% for event in events %}
-            <div class="event-card">
-                {% if event.image %}
-                <div class="event-image">
-                    <img src="{{ event.image.url }}" alt="{{ event.title }}" loading="lazy">
-
-                    <div class="event-date">
-                        📅 {{ event.date|date:"M d, Y" }}
-                    </div>
-                </div>
-                {% endif %}
-                <div class="event-content">
-                    <h3>{{ event.title }}</h3>
-                    <p>{{ event.description|truncatewords:35 }}</p>
-
-                    <!-- Location included and all words white -->
-                    {% if event.type %} 💼 {{ event.type|capfirst }} | {% endif %} 📍 <a href="https://www.google.com/maps/search/{{ event.location|urlencode }}" target="_blank">
-    {{ event.location }}
-</a>
 
 
-                    <div class="event-actions">
-                        <a href="{% url 'event_detail' event.id %}" class="event-btn">Explore Event</a>
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text={{ event.title|urlencode }}&dates={{ event.date|date:'Ymd' }}/{{ event.date|date:'Ymd' }}&details={{ event.description|urlencode }}&location={{ event.location|urlencode }}" target="_blank"
-                            class="add-calendar-btn">📆 Add to Calendar</a>
-                    </div>
-                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="event-gallery-section">
+    <h2 class="events-title">Explore Various Events</h2>
+    <p class="events-subtitle">
+        Discover exciting Tax Automation activities — workshops, fun sessions, and innovation days.
+    </p>
+    <div class="event-gallery-wrapper">
+        {% for event in events %}
+        <div class="event-item-card">
+            <img src="{{ event.image.url }}" alt="{{ event.title }}">
+            <div class="event-item-content">
+                <div class="event-item-title">{{ event.title }}</div>
+                {% if event.date %}
+                <div class="event-item-date">📅 {{ event.date }}</div>{% endif %} {% if event.location %}
+                <div class="event-item-location">📍 {{ event.location }}</div>{% endif %} {% if event.description %}
+                <div class="event-item-description">{{ event.description }}</div>{% endif %}
+                <a href="{% url 'event_detail' event.id %}" class="event-item-button">Explore Event</a>
+
             </div>
-            {% empty %}
-            <p class="no-events">No upcoming events at the moment. Check back soon!</p>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
 </section>
 
